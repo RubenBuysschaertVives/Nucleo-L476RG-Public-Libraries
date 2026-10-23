@@ -176,6 +176,25 @@ char* SBUSToJSON(SBUS* sbus)
 
 
 // Voorbeeldgebruik in de main.c.
+///* USER CODE BEGIN 2 */
+//// Struct initialiseren.
+//SBUSInit(&sbus);	
+
+// ...
+
+//// Receiver Timeout instellen op UART1 (SBUS UART). Deze timeout zorgt voor de synchronisatie.
+//// OPM: code lijkt goed te werken met 150 (of meer) als timeout, maar niet stabiel met bijvoorbeeld 48...
+//// In CMSIS werkte 48 wel stabiel...
+//// Aangezien we op 100 000 baud werken, komt het neer op 150 x 10µs inactiviteit op de bus (1,5ms).
+//HAL_UART_ReceiverTimeout_Config(&huart1, 150);
+//HAL_UART_EnableReceiverTimeout(&huart1);
+
+//// Ontvangst van 25 bytes via DMA starten.
+//HAL_UART_Receive_DMA(&huart1, (uint8_t*)sbus.rawData, SBUS_NUMBER_OF_BYTES);	
+///* USER CODE END 2 */
+
+
+	
 ///* USER CODE BEGIN 4 */
 //// Code hieronder wordt opgeroepen als alle data van HAL_UART_Receive_DMA(() ontvangen is...
 //// Deze functie wordt opgeroepen vanuit HAL_UART_IRQHandler().
